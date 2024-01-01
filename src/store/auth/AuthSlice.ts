@@ -4,21 +4,19 @@ import { createSlice } from "@reduxjs/toolkit";
 // Define a type for the slice state
 
 export interface AuthProps {
-    status: "checking" | "no-authenticated" | " authenticated";
-    user: string;
-    password?: string;
-    displayName?: string;
-    photoURL?: string;
-    uid?: string;
+    status: string;
+    displayName: string | null | undefined;
+    email: string | null | undefined;
+    photoURL: string | null | undefined;
+    uid: string | undefined;
     errorMessage?: string;
 }
 
 // Define the initial state using that type
 const initialState: AuthProps = {
     status: "no-authenticated",
-    user: "",
-    password: "",
     displayName: "",
+    email: "",
     photoURL: "",
     uid: "",
     errorMessage: "",
@@ -30,13 +28,20 @@ export const AuthSlice = createSlice({
     initialState,
     reducers: {
         login: (state, action: PayloadAction<AuthProps>) => {
-            state.user = action.payload.user;
-            state.password = action.payload.password;
+            state.status = "authenticated";
+            state.displayName = action.payload.displayName;
+            state.email = action.payload.email;
+            state.photoURL = action.payload.photoURL;
+            state.uid = action.payload.uid;
+            state.errorMessage = action.payload.errorMessage;
         },
 
-        logout: (state) => {
-            state.user = "";
-            state.password = "";
+        logout: (state, { payload: { errorMessage } }) => {
+            state.status = "no-authenticated";
+            state.displayName = "";
+            state.photoURL = "";
+            state.uid = "";
+            state.errorMessage = errorMessage;
         },
 
         checkingCredentials: (state) => {
@@ -45,4 +50,4 @@ export const AuthSlice = createSlice({
     },
 });
 
-export const { login, logout } = AuthSlice.actions;
+export const { login, logout, checkingCredentials } = AuthSlice.actions;

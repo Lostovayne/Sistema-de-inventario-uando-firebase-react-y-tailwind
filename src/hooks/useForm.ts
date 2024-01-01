@@ -30,6 +30,7 @@ export const useForm = (initialForm: InitialStateLogin = { email: "", password: 
     const handleLogin = (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
+
         setTimeout(() => {
             setLoading(false);
         }, 2000);

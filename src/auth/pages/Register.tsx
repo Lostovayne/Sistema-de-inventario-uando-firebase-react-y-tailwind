@@ -28,9 +28,10 @@ export const Register = () => {
                 <Input type="password" id="password" placeholder="******" />
             </div>
             <div className="flex flex-col items-end gap-3">
-                <Button variant={"link"} className="border-none">
-                    <Link to="/auth/login">Ya tienes una cuenta?</Link>
-                </Button>
+                <Link className="py-2 text-base font-normal" to="/auth/login">
+                    Ya tienes una cuenta?
+                </Link>
+
                 <Button variant={"default"} className="w-full" type="submit" disabled={loading}>
                     <RiLoader4Fill hidden={!loading} className="mr-2 h-4 w-4 animate-spin" />
                     {loading ? "Cargando..." : "Registrarme"}
