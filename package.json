@@ -25,7 +25,8 @@
     "react-redux": "^9.0.4",
     "react-router-dom": "^6.21.1",
     "tailwind-merge": "^2.2.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@types/node": "^20.10.6",
