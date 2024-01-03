@@ -12,9 +12,15 @@ export interface AuthProps {
     errorMessage?: string;
 }
 
+export const Status = {
+    checking: "checking",
+    authenticated: "authenticated",
+    notAuthenticated: "not-authenticated",
+};
+
 // Define the initial state using that type
 const initialState: AuthProps = {
-    status: "no-authenticated",
+    status: Status.checking,
     displayName: "",
     email: "",
     photoURL: "",
@@ -28,7 +34,7 @@ export const AuthSlice = createSlice({
     initialState,
     reducers: {
         login: (state, action: PayloadAction<AuthProps>) => {
-            state.status = "authenticated";
+            state.status = action.payload.status;
             state.displayName = action.payload.displayName;
             state.email = action.payload.email;
             state.photoURL = action.payload.photoURL;
@@ -37,7 +43,7 @@ export const AuthSlice = createSlice({
         },
 
         logout: (state, { payload: { errorMessage } }) => {
-            state.status = "no-authenticated";
+            state.status = Status.notAuthenticated;
             state.displayName = "";
             state.photoURL = "";
             state.uid = "";

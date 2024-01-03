@@ -3,13 +3,6 @@ import { checkingCredentials, login, logout } from "../AuthSlice";
 import { signInWithGoogle } from "@/firebase/providers";
 import { toast } from "@/components/ui/use-toast";
 
-// export const startwithEmailAndPassword = ({ email, password }) => {
-//     // cambiamos estado a checking...
-//     return async (dispatch: AppDispatch) => {
-//         dispatch(checkingCredentials());
-//     };
-// };
-
 export const startGoogleSignIn = () => {
     return async (dispatch: AppDispatch) => {
         dispatch(checkingCredentials());
